@@ -1,6 +1,6 @@
 ﻿namespace ImageProcessingApp
 {
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
 
     }

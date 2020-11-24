@@ -5,8 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageProcessingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="400" Width="1000">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
+        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Column="0" Grid.Row="0" Content="Open" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Open Default" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="2" Content="Save" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="3" Content="Convert RGB Values" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="4" Content="Convert RGB Values Async" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="5" Content="Grayscale" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="6" Content="Grayscale Async" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="7" Content="Grayscale Cpp" Margin="5" Command=""/>
+        </Grid>
+
+        <Border Grid.Row="0" Grid.Column="1" 
+                BorderThickness="2" BorderBrush="AliceBlue" 
+                Height="Auto" Width="Auto" Margin="5">
+            <Image x:Name="imageBefore"/>
+        </Border>
+        <Border Grid.Row="0" Grid.Column="2"
+                BorderThickness="2" BorderBrush="AliceBlue" 
+                Height="Auto" Width="Auto" Margin="5">
+            <Image x:Name="imageAfter"/>
+        </Border>
+
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+               FontSize="15"
+               Content=""
+               x:Name="timeLabel"/>
+        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+               FontSize="15"
+               Content=""
+               x:Name="timeLabel2"/>
     </Grid>
 </Window>
