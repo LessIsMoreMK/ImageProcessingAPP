@@ -30,9 +30,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Grid.Row="0" Content="Open" Margin="5" Command=""/>
-            <Button Grid.Column="0" Grid.Row="1" Content="Open Default" Margin="5" Command=""/>
-            <Button Grid.Column="0" Grid.Row="2" Content="Save" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="0" Content="Open" Margin="5" Command="{Binding LoadImageCommand}"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Open Default" Margin="5" Command="{Binding LoadDefaultImageCommand}"/>
+            <Button Grid.Column="0" Grid.Row="2" Content="Save" Margin="5" Command="{Binding SaveImageCommand}"/>
             <Button Grid.Column="0" Grid.Row="3" Content="Convert RGB Values" Margin="5" Command=""/>
             <Button Grid.Column="0" Grid.Row="4" Content="Convert RGB Values Async" Margin="5" Command=""/>
             <Button Grid.Column="0" Grid.Row="5" Content="Grayscale" Margin="5" Command=""/>
@@ -43,12 +43,22 @@
         <Border Grid.Row="0" Grid.Column="1" 
                 BorderThickness="2" BorderBrush="AliceBlue" 
                 Height="Auto" Width="Auto" Margin="5">
-            <Image x:Name="imageBefore"/>
+            <Image x:Name="imageBefore" 
+                   Source="{Binding ImagePath}" 
+                   HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Stretch" 
+                   Stretch="Fill"/>
         </Border>
         <Border Grid.Row="0" Grid.Column="2"
-                BorderThickness="2" BorderBrush="AliceBlue" 
-                Height="Auto" Width="Auto" Margin="5">
-            <Image x:Name="imageAfter"/>
+                BorderThickness="2" 
+                BorderBrush="AliceBlue" 
+                Height="Auto" 
+                Width="Auto" Margin="5">
+            <Image x:Name="imageAfter" 
+                   Source="" 
+                   HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Stretch" 
+                   Stretch="Fill"/>
         </Border>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
