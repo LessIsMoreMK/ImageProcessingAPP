@@ -13,3 +13,6 @@ C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProces
 C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProcessingApp\obj\Debug\ImageProcessingApp.csproj.CoreCompileInputs.cache
 C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProcessingApp\obj\Debug\ImageProcessingApp.exe
 C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProcessingApp\obj\Debug\ImageProcessingApp.pdb
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProcessingApp\bin\Debug\ImageConverter.dll
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProcessingApp\bin\Debug\ImageConverter.pdb
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageProcessingApp\obj\Debug\ImageProcessingApp.csproj.CopyComplete

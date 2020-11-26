@@ -103,5 +103,11 @@
   <ItemGroup>
     <Resource Include="Images\default.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageConverter\ImageConverterLibrary.csproj">
+      <Project>{d07b57f3-8dcc-4361-b994-c34ff9c510ff}</Project>
+      <Name>ImageConverterLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

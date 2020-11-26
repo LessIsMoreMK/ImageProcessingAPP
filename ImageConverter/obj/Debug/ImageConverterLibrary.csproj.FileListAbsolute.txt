@@ -1,0 +1,8 @@
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\bin\Debug\ImageConverter.dll
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\bin\Debug\ImageConverter.pdb
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\bin\Debug\WindowsBase.dll
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\obj\Debug\ImageConverterLibrary.csprojAssemblyReference.cache
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\obj\Debug\ImageConverterLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\obj\Debug\ImageConverterLibrary.csproj.CopyComplete
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\obj\Debug\ImageConverter.dll
+C:\Users\Maciej\Desktop\Programowanie\C#\Projekty\ImageProcessingApp\ImageConverter\obj\Debug\ImageConverter.pdb

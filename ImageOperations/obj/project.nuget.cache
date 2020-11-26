@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "X+yeJNe+6AdDBnObBH4kZG5/LJX8BWdzCN71CtqZu+3oBhdI6uwfVybJZauiVC46aQGEM1lEk0uadNoc0Yzc2Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Maciej\\Desktop\\Programowanie\\C#\\Projekty\\ImageProcessingApp\\ImageOperations\\ImageOperations.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Maciej\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Maciej\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

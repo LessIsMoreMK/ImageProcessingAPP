@@ -1,26 +1,36 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Controls;
+using System.Windows.Media;
+using ImageConverterLibrary;
 
 namespace ImageProcessingApp
 {
-    public class MainViewModel : Window
+    public class MainViewModel : BaseViewModel
     {
         #region Fields
         private string _ImagePath;
+        private ImageSource _ImageResult;
         #endregion
 
         #region Properties
         public string ImagePath
         {
-            get =>_ImagePath; 
+            get => _ImagePath;
             set
             {
                 _ImagePath = value;
                 OnPropertyChanged(() => ImagePath);
+            }
+        }
+        public ImageSource ImageResult
+        {
+            get { return _ImageResult; }
+            set
+            {
+                _ImageResult = value;
+                OnPropertyChanged(() => ImageResult);
             }
         }
         #endregion
@@ -29,8 +39,8 @@ namespace ImageProcessingApp
         public ICommand LoadImageCommand { get; set; }
         public ICommand LoadDefaultImageCommand { get; set; }
         public ICommand SaveImageCommand { get; set; }
-        public ICommand ConvertCommand { get; set; }
-        public ICommand ConvertAsyncCommand { get; set; }
+        public ICommand ConvertRGBCommand { get; set; }
+        public ICommand ConvertRGBAsyncCommand { get; set; }
 
         #endregion
 
@@ -40,9 +50,8 @@ namespace ImageProcessingApp
             LoadImageCommand = new RelayCommand(LoadImage);
             LoadDefaultImageCommand = new RelayCommand(LoadDefaultImage);
             SaveImageCommand = new RelayCommand(SaveImage);
-
-            var t = new TreeViewItem()
-
+            ConvertRGBCommand = new RelayCommand(ConvertRGB);
+            ConvertRGBAsyncCommand = new RelayCommand(ConvertRGBAsync);
         }
         #endregion
 
@@ -66,6 +75,16 @@ namespace ImageProcessingApp
         private void SaveImage()
         {
 
+        }
+        private void ConvertRGB()
+        {
+            ConvertRGB ConvertRGB = new ConvertRGB();
+            ImageResult = ConvertRGB.ConvertRGBValue(_ImagePath);
+        }
+        private async void ConvertRGBAsync()
+        {
+            ConvertRGB ConvertRGB = new ConvertRGB();
+            ImageResult = await ConvertRGB.ConvertRGBValueAsync(_ImagePath);
         }
         #endregion
     }
