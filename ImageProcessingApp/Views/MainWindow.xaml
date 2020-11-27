@@ -62,11 +62,11 @@
         </Border>
 
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
-               FontSize="15"
-               Content=""
+               FontSize="12"
+               Content="{Binding Time}"
                x:Name="timeLabel"/>
         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
-               FontSize="15"
+               FontSize="12"
                Content=""
                x:Name="timeLabel2"/>
     </Grid>
