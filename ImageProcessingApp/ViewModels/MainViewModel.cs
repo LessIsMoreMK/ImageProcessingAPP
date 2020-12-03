@@ -6,44 +6,35 @@ using System.Windows.Media;
 using ImageConverterLibrary;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace ImageProcessingApp
 {
     public class MainViewModel : BaseViewModel
     {
         #region Fields
-        private string _ImagePath;
-        private ImageSource _ImageResult;
-        private string _Time;
+        private string imagePath;
+        private ImageSource imageResult;
+        private string time;
         #endregion
 
         #region Properties
         public string ImagePath
         {
-            get => _ImagePath;
-            set
-            {
-                _ImagePath = value;
-                OnPropertyChanged(() => ImagePath);
-            }
+            get => imagePath;
+            set { imagePath = value; OnPropertyChanged(); }
         }
         public ImageSource ImageResult
         {
-            get { return _ImageResult; }
-            set
-            {
-                _ImageResult = value;
-                OnPropertyChanged(() => ImageResult);
-            }
+            get { return imageResult; }
+            set { imageResult = value; OnPropertyChanged(); }
         }
         public string Time
         {
-            get => _Time;
-            set
-            {
-                _Time = value;
-                OnPropertyChanged(() => Time);
-            }
+            get => time;
+            set { time = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -86,35 +77,61 @@ namespace ImageProcessingApp
 
         private void SaveImage()
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
-            saveFileDialog1.Title = "Save Image";
-            saveFileDialog1.ShowDialog();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Pictures (*.jpg;*.gif;*.png)|*.jpg;*.gif;*.png";
+            string tempPath = "";
 
-
-            if (saveFileDialog1.ShowDialog() ?? false)
+            try
             {
-                BitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create((BitmapImage)_ImageResult));
+                if (saveFileDialog.ShowDialog() ?? false)
+                    tempPath = Path.GetFullPath(saveFileDialog.FileName);
 
-                using (var fileStream = new System.IO.FileStream(_ImagePath, System.IO.FileMode.Create))
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create((BitmapImage)ImageResult));
+
+                File.Copy(imagePath, tempPath);
+
+                using (var fileStream = new System.IO.FileStream(tempPath, System.IO.FileMode.Create))
                 {
                     encoder.Save(fileStream);
                 }
             }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error occured: \n" + e.Message);
+            }
         }
         private void ConvertRGB()
         {
-            var watch = Stopwatch.StartNew();
+            Bitmap bitmap = null;
             ConvertRGB ConvertRGB = new ConvertRGB();
-            ImageResult = ConvertRGB.ConvertRGBValue(_ImagePath);
+
+            var watch = Stopwatch.StartNew();        
+            bitmap = ConvertRGB.ConvertRGBValue(imagePath);
+            watch.Stop();
+
+            ImageResult = ConvertRGB.BitmapToImageSource(bitmap);
             Time = "Convert working time: " + watch.ElapsedMilliseconds + " ms";
         }
         private async void ConvertRGBAsync()
         {
-            var watch = Stopwatch.StartNew();
+            if (ImagePath == null)
+            {
+                MessageBox.Show("There is nothing to convert!");
+                return;
+            }
+
+            Bitmap bitmap = null;
             ConvertRGB ConvertRGB = new ConvertRGB();
-            ImageResult = await ConvertRGB.ConvertRGBValueAsync(_ImagePath);
+
+            var watch = Stopwatch.StartNew();
+            await Task.Run(() =>
+            {
+                bitmap = ConvertRGB.ConvertRGBValue(imagePath);
+            });
+            watch.Stop();
+
+            ImageResult = ConvertRGB.BitmapToImageSource(bitmap);
             Time = "Convert working time: " + watch.ElapsedMilliseconds + " ms";
         }
         #endregion

@@ -8,11 +8,11 @@ namespace ImageConverterLibrary
 {
     public class ConvertRGB
     {
-        public BitmapImage ConvertRGBValue(string ImagePath)
+        public Bitmap ConvertRGBValue(string imagePath)
         {
             unsafe
             {
-                Bitmap processedBitmap = (Bitmap)Bitmap.FromFile(ImagePath);
+                Bitmap processedBitmap = (Bitmap)Bitmap.FromFile(imagePath);
                 BitmapData bitmapData = processedBitmap.LockBits(new Rectangle(0, 0, processedBitmap.Width, processedBitmap.Height), ImageLockMode.ReadWrite, processedBitmap.PixelFormat);
 
                 int bytesPerPixel = System.Drawing.Bitmap.GetPixelFormatSize(processedBitmap.PixelFormat) / 8;
@@ -43,11 +43,11 @@ namespace ImageConverterLibrary
                 });
                 processedBitmap.UnlockBits(bitmapData);
 
-                return BitmapToImageSource(processedBitmap);
+                return processedBitmap;
             }
         }
 
-        private BitmapImage BitmapToImageSource(Bitmap bitmap)
+        public BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
             {
@@ -58,14 +58,8 @@ namespace ImageConverterLibrary
                 bitmapimage.StreamSource = memory;
                 bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
                 bitmapimage.EndInit();
-
                 return bitmapimage;
             }
-        }
-
-        public Task<BitmapImage> ConvertRGBValueAsync(string ImagePath)
-        {
-            return Task.Run(() => ConvertRGBValue(ImagePath));
         }
     }
 }
