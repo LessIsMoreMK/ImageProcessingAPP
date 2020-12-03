@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace ImageProcessingApp
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : PropertyChangedClass
     {
         #region Fields
         private string imagePath;
@@ -44,17 +44,21 @@ namespace ImageProcessingApp
         public ICommand SaveImageCommand { get; set; }
         public ICommand ConvertRGBCommand { get; set; }
         public ICommand ConvertRGBAsyncCommand { get; set; }
+        public ICommand GrayscaleCommand { get; set; }
+        public ICommand GrayscaleAsyncCommand { get; set; }
 
         #endregion
 
         #region Constructor
         public MainViewModel()
         {
-            LoadImageCommand = new RelayCommand(LoadImage);
-            LoadDefaultImageCommand = new RelayCommand(LoadDefaultImage);
-            SaveImageCommand = new RelayCommand(SaveImage);
-            ConvertRGBCommand = new RelayCommand(ConvertRGB);
-            ConvertRGBAsyncCommand = new RelayCommand(ConvertRGBAsync);
+            LoadImageCommand = new Command(LoadImage);
+            LoadDefaultImageCommand = new Command(LoadDefaultImage);
+            SaveImageCommand = new Command(SaveImage);
+            ConvertRGBCommand = new Command(ConvertRGB);
+            ConvertRGBAsyncCommand = new Command(ConvertRGBAsync);
+            GrayscaleCommand = new Command(Grayscale);
+            GrayscaleAsyncCommand = new Command(GrayscaleAsync);
         }
         #endregion
 
@@ -104,7 +108,7 @@ namespace ImageProcessingApp
         private void ConvertRGB()
         {
             Bitmap bitmap = null;
-            ConvertRGB ConvertRGB = new ConvertRGB();
+            Converter ConvertRGB = new Converter();
 
             var watch = Stopwatch.StartNew();        
             bitmap = ConvertRGB.ConvertRGBValue(imagePath);
@@ -122,12 +126,45 @@ namespace ImageProcessingApp
             }
 
             Bitmap bitmap = null;
-            ConvertRGB ConvertRGB = new ConvertRGB();
+            Converter ConvertRGB = new Converter();
 
             var watch = Stopwatch.StartNew();
             await Task.Run(() =>
             {
                 bitmap = ConvertRGB.ConvertRGBValue(imagePath);
+            });
+            watch.Stop();
+
+            ImageResult = ConvertRGB.BitmapToImageSource(bitmap);
+            Time = "Convert working time: " + watch.ElapsedMilliseconds + " ms";
+        }
+        private void Grayscale()
+        {
+            Bitmap bitmap = null;
+            Converter ConvertRGB = new Converter();
+
+            var watch = Stopwatch.StartNew();
+            bitmap = ConvertRGB.Grayscale(imagePath);
+            watch.Stop();
+
+            ImageResult = ConvertRGB.BitmapToImageSource(bitmap);
+            Time = "Convert working time: " + watch.ElapsedMilliseconds + " ms";
+        }
+        private async void GrayscaleAsync()
+        {
+            if (ImagePath == null)
+            {
+                MessageBox.Show("There is nothing to convert!");
+                return;
+            }
+
+            Bitmap bitmap = null;
+            Converter ConvertRGB = new Converter();
+
+            var watch = Stopwatch.StartNew();
+            await Task.Run(() =>
+            {
+                bitmap = ConvertRGB.Grayscale(imagePath);
             });
             watch.Stop();
 

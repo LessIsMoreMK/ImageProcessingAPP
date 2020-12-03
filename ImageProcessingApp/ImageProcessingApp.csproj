@@ -64,8 +64,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\BaseViewModel.cs" />
-    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Helpers\PropertyChangedClass.cs" />
+    <Compile Include="Helpers\Command.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

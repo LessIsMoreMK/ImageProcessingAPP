@@ -35,8 +35,8 @@
             <Button Grid.Column="0" Grid.Row="2" Content="Save" Margin="5" Command="{Binding SaveImageCommand}"/>
             <Button Grid.Column="0" Grid.Row="3" Content="Convert RGB Values" Margin="5" Command="{Binding ConvertRGBCommand}"/>
             <Button Grid.Column="0" Grid.Row="4" Content="Convert RGB Values Async" Margin="5" Command="{Binding ConvertRGBAsyncCommand}"/>
-            <Button Grid.Column="0" Grid.Row="5" Content="Grayscale" Margin="5" Command=""/>
-            <Button Grid.Column="0" Grid.Row="6" Content="Grayscale Async" Margin="5" Command=""/>
+            <Button Grid.Column="0" Grid.Row="5" Content="Grayscale" Margin="5" Command="{Binding GrayscaleCommand}"/>
+            <Button Grid.Column="0" Grid.Row="6" Content="Grayscale Async" Margin="5" Command="{Binding GrayscaleAsyncCommand}"/>
             <Button Grid.Column="0" Grid.Row="7" Content="Grayscale Cpp" Margin="5" Command=""/>
         </Grid>
 

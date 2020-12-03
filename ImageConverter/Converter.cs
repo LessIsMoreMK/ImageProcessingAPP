@@ -6,8 +6,28 @@ using System.Windows.Media.Imaging;
 
 namespace ImageConverterLibrary
 {
-    public class ConvertRGB
+    public class Converter
     {
+        public Bitmap Grayscale(string imagePath)
+        {
+            unsafe
+            {
+                Bitmap processedBitmap = (Bitmap)Bitmap.FromFile(imagePath);
+                for (int i = 0; i < processedBitmap.Width; i++)
+                {
+                    for (int x = 0; x < processedBitmap.Height; x++)
+                    {
+                        Color oldColor = processedBitmap.GetPixel(i, x);
+                        int grayScale = (int)((oldColor.R * 0.3) + (oldColor.G * 0.59) + (oldColor.B * 0.11));
+                        Color newColor = Color.FromArgb(oldColor.A, grayScale, grayScale, grayScale);
+                        processedBitmap.SetPixel(i, x, newColor);
+                    }
+                }
+
+                return processedBitmap;
+            }
+        }
+
         public Bitmap ConvertRGBValue(string imagePath)
         {
             unsafe

@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace ImageProcessingApp
 {
-    public class RelayCommand : ICommand
+    public class Command : ICommand
     {
         #region Private Members
 
@@ -25,7 +25,7 @@ namespace ImageProcessingApp
 
         #region Constructor
 
-        public RelayCommand(Action action)
+        public Command(Action action)
         {
             mAction = action;
         }

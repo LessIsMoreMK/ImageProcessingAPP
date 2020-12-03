@@ -8,7 +8,7 @@ namespace ImageProcessingApp
     /// <summary>
     /// A base view model that fires Property Changed event as needed
     /// </summary>
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class PropertyChangedClass : INotifyPropertyChanged
     {
         /// <summary>
         /// The event that is fired when any child property changes its value
