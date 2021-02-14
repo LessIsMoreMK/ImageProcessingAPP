@@ -46,6 +46,7 @@ namespace ImageProcessingApp
         public ICommand ConvertRGBAsyncCommand { get; set; }
         public ICommand GrayscaleCommand { get; set; }
         public ICommand GrayscaleAsyncCommand { get; set; }
+        public ICommand GrayscaleCppCommand { get; set; }
 
         #endregion
 
@@ -59,6 +60,7 @@ namespace ImageProcessingApp
             ConvertRGBAsyncCommand = new Command(ConvertRGBAsync);
             GrayscaleCommand = new Command(Grayscale);
             GrayscaleAsyncCommand = new Command(GrayscaleAsync);
+            GrayscaleCppCommand = new Command(GrayscaleCpp);
         }
         #endregion
 
@@ -166,6 +168,18 @@ namespace ImageProcessingApp
             {
                 bitmap = ConvertRGB.Grayscale(imagePath);
             });
+            watch.Stop();
+
+            ImageResult = ConvertRGB.BitmapToImageSource(bitmap);
+            Time = "Convert working time: " + watch.ElapsedMilliseconds + " ms";
+        }
+        private void GrayscaleCpp()
+        {
+            Bitmap bitmap = null;
+            Converter ConvertRGB = new Converter();
+
+            var watch = Stopwatch.StartNew();
+            bitmap = ConvertRGB.GrayscaleCppExecute(imagePath);
             watch.Stop();
 
             ImageResult = ConvertRGB.BitmapToImageSource(bitmap);

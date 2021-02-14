@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace ImageConverterLibrary
+namespace ImageConverterLibrary 
 {
     public class Converter
     {
@@ -80,6 +82,17 @@ namespace ImageConverterLibrary
                 bitmapimage.EndInit();
                 return bitmapimage;
             }
+        }
+
+        [DllImport("../../../Debug/ImageConverterLibraryCpp.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GrayscaleCpp(IntPtr bmap);
+
+        public Bitmap GrayscaleCppExecute(string imagePath)
+        {
+            Bitmap processedBitmap = (Bitmap)Bitmap.FromFile(imagePath);
+            IntPtr hBitmap = processedBitmap.GetHbitmap();
+            processedBitmap = Image.FromHbitmap(GrayscaleCpp(hBitmap));
+            return processedBitmap;
         }
     }
 }
